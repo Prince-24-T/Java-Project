@@ -1,0 +1,3 @@
+WebContent/WEB-INF/db.properties
+WebContent/WEB-INF/lib/*.jar
+build/
