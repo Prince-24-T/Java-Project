@@ -18,14 +18,11 @@ public class DBConnection {
                 InputStream input = DBConnection.class
                         .getClassLoader()
                         .getResourceAsStream("db.properties");
-
                 if (input == null) {
                     System.out.println("db.properties file not found!");
                     return null;
                 }
-
                 prop.load(input);
-
                 String url = prop.getProperty("db.url");
                 String user = prop.getProperty("db.username");
                 String pass = prop.getProperty("db.password");
