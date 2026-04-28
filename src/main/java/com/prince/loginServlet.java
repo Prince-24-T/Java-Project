@@ -36,25 +36,26 @@ public class LoginServlet extends HttpServlet {
 		try {
 						
 			   PreparedStatement ps = con.prepareStatement(
-				        "SELECT userName, password FROM users WHERE email = ?"
+				        "SELECT id, userName, password FROM users WHERE email = ?"
 				    );
 			  ps.setString(1, email);
 			  ResultSet rs = ps.executeQuery();
 
 			    if (rs.next()) {
 			        String dbUser = rs.getString("userName");
+			        int  userId = rs.getInt("id");
 			        System.out.print(dbUser);
 			        String dbPass = rs.getString("password");
 			        if(dbPass.equals(pass)) {
 			        	  HttpSession session = request.getSession();
 			        	  session.setAttribute("user", dbUser);
+			        	  session.setAttribute("userId", userId);
 			        	  System.out.println("Profile Session ID: " + session.getId());
 			        	  response.sendRedirect("index.html");
 			        	 
 			        }else {
 			        	 pw.println("Password is incorrect");
 			            request.getRequestDispatcher("login.html").include(request, response); 
-			           
 			        }
 		
 			    } else {

@@ -19,14 +19,29 @@ public class ProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		response.setContentType("text/html");
-		PrintWriter pw = response.getWriter();
-		
+	
 		  HttpSession session = request.getSession(false);
-		  pw.print(session);
-		  System.out.println("Profile Session ID: " + session.getId());
+		  
+
+	        if (session == null) {
+	            response.sendRedirect("login.html");
+	            return;
+	        }
 		  String user = (String) session.getAttribute("user");
-		  pw.print("welcome to your profile"+""+user);
+		  Integer userId =  (Integer) session.getAttribute("userId");
+		  request.setAttribute("user", user);
+		    request.setAttribute("userId", userId);
+		    System.out.println("Profile Session ID: " + session.getId());
+
+		    RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");
+		    rd.forward(request, response);
+		  
+		  
+		 
+		  
+		
+	
+		  
 //		RequestDispatcher rd = request.getRequestDispatcher("profile.html");
 //		
 //		rd.include(request, response);

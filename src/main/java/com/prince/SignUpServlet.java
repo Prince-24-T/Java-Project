@@ -63,13 +63,22 @@ public class SignUpServlet extends HttpServlet {
 				    	newUser.setString(1 , userName);
 				    	newUser.setString(2 , email);
 				    	newUser.setString(3 , pass);
-				    	 newUser.executeUpdate(); // ⭐ important
-				    	HttpSession session = request.getSession();
-				    	session.setAttribute("user", userName);
-				    	 response.sendRedirect("/");
+				    	int row =  newUser.executeUpdate(); 
+				    	// ⭐ important
+				    	if(row>0) {
+				    		 ResultSet generatedKeys = newUser.getGeneratedKeys();
+				    		 if(generatedKeys.next()) {
+				    			    int userId = generatedKeys.getInt(1);
+				    				 HttpSession session = request.getSession();
+								    	session.setAttribute("user", userName);
+								    	session.setAttribute("userId", userId);
+								    	 response.sendRedirect("/");
+				    		 }
+				    	
+				    	}
+				    	
 				    	
 				    }
-		
 				
 			}catch(Exception e){
 				System.out.println(e);

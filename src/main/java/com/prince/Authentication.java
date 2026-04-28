@@ -19,9 +19,8 @@ import java.io.PrintWriter;
 /**
  * Servlet Filter implementation class ProfileFilder
  */
-//@WebFilter("/ProfileServlet")
-public class ProfileFilder extends HttpFilter implements Filter {
-       
+@WebFilter("/ProfileServlet")
+public class Authentication extends HttpFilter implements Filter {
 	public void init(FilterConfig fConfig) throws ServletException {
 	
 	}
