@@ -43,28 +43,32 @@ public class LoginServlet extends HttpServlet {
 
 			    if (rs.next()) {
 			        String dbUser = rs.getString("userName");
+			        System.out.print(dbUser);
 			        String dbPass = rs.getString("password");
 			        if(dbPass.equals(pass)) {
 			        	  HttpSession session = request.getSession();
 			        	  session.setAttribute("user", dbUser);
-			                response.sendRedirect("index.html");
+			        	  System.out.println("Profile Session ID: " + session.getId());
+			        	  response.sendRedirect("index.html");
+			        	 
 			        }else {
-			            pw.println("Password is incorrect");
-			            RequestDispatcher rd=request.getRequestDispatcher("index.html"); 
-				    	 rd.include(request , response);
+			        	 pw.println("Password is incorrect");
+			            request.getRequestDispatcher("login.html").include(request, response); 
+			           
 			        }
 		
 			    } else {
-			    	
+			    	 pw.println("Email is incorrect");
+			            request.getRequestDispatcher("login.html").include(request, response); 
 			        System.out.println("email is incorrect");
 			    }
-	
 			
 		}catch(Exception e){
 			System.out.println(e);
 			
 		}
 		
+		 pw.close();  
 		
 		
 		

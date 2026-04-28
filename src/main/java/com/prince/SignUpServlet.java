@@ -65,9 +65,8 @@ public class SignUpServlet extends HttpServlet {
 				    	newUser.setString(3 , pass);
 				    	 newUser.executeUpdate(); // ⭐ important
 				    	HttpSession session = request.getSession();
-				    	session.setAttribute("name", userName);
-				    	 RequestDispatcher rd=request.getRequestDispatcher("index.html"); 
-				    	 rd.forward(request , response);
+				    	session.setAttribute("user", userName);
+				    	 response.sendRedirect("/");
 				    	
 				    }
 		
