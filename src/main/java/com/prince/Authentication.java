@@ -24,11 +24,7 @@ public class Authentication extends HttpFilter implements Filter {
 	public void init(FilterConfig fConfig) throws ServletException {
 	
 	}
-	
 public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-	
-
-	    
 	     
 	     HttpServletRequest req = (HttpServletRequest) request;
 	     HttpServletResponse res = (HttpServletResponse) response;
@@ -42,7 +38,6 @@ public void doFilter(ServletRequest request, ServletResponse response, FilterCha
 	    	
 	    	  res.sendRedirect("login.html");
 	     }
-	     
 		
 	}
 	public void destroy() {

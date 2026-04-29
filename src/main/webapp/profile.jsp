@@ -10,7 +10,11 @@
 
 <h3>User ID: <%= request.getAttribute("userId") %></h3>
 
-<a href="" >Edit profile</a>
+<a href="ShowToDoServlet">See TO-DO LIST</a>
+
+<a href="addToList.html" >Add TO-Do List</a>
+
+ 
 
 </body>
 </html>
